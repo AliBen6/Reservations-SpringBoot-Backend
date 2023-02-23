@@ -1,1 +1,32 @@
+spring:
+  profiles:
+    active : @activatedProperties@
+  application:
+    name: Reservations-SpringBoot
 
+server:
+  servlet:
+    context-path: /reservations
+#  tomcat:
+#    max-connections: 20
+#    threads:
+#      max: 5
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: health,info,loggers,metrics #httptrace,prometheus
+
+  server:
+    port: 8099
+    base-path: /reservations
+
+springdoc:
+  swagger-ui:
+    path: /swagger-ui-reservations.html
+
+    operationsSorter: method
+
+  api-docs:
+    path: /api-docs

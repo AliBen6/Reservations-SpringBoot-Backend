@@ -16,6 +16,34 @@
     <properties>
         <java.version>11</java.version>
     </properties>
+
+    <profiles>
+        <profile>
+            <id>dev</id>
+            <activation>
+                <activeByDefault>true</activeByDefault>
+            </activation>
+            <properties>
+                <activatedProperties>dev</activatedProperties>
+                <build.name>${project.name}-dev</build.name>
+            </properties>
+        </profile>
+        <profile>
+            <id>qa</id>
+            <properties>
+                <activatedProperties>qa</activatedProperties>
+                <build.name>${project.name}-qa</build.name>
+            </properties>
+        </profile>
+        <profile>
+            <id>prod</id>
+            <properties>
+                <activatedProperties>prod</activatedProperties>
+                <build.name>${project.name}-prod</build.name>
+            </properties>
+        </profile>
+    </profiles>
+
     <dependencies>
         <dependency>
             <groupId>org.springframework.boot</groupId>
@@ -68,11 +96,13 @@
             <artifactId>h2</artifactId>
             <scope>runtime</scope>
         </dependency>
+        <!--
         <dependency>
             <groupId>com.mysql</groupId>
             <artifactId>mysql-connector-j</artifactId>
             <scope>runtime</scope>
         </dependency>
+        -->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-configuration-processor</artifactId>
@@ -93,16 +123,17 @@
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-ui</artifactId>
-            <version>1.5.2</version>
+            <version>1.6.11</version>
         </dependency>
         <dependency>
             <groupId>org.springdoc</groupId>
             <artifactId>springdoc-openapi-data-rest</artifactId>
-            <version>1.5.2</version>
+            <version>1.6.11</version>
         </dependency>
     </dependencies>
 
     <build>
+        <finalName>${build.name}</finalName>
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
