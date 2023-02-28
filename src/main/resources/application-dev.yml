@@ -56,6 +56,6 @@ spring:
     url: ${spring.datasource.url}
     user: ${spring.datasource.username}
     password: ${spring.datasource.password}
-    check-location: true
     locations: classpath:db/migration
     baseline-on-migrate: true
+    fail-on-missing-locations: true
