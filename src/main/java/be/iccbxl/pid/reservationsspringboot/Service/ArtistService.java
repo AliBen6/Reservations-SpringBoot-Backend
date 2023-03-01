@@ -20,7 +20,7 @@ public class ArtistService {
 
     private static final Logger LOG = LoggerFactory.getLogger(ArtistService.class);
 
-    private ArtistRepository artistRepository;
+    private final ArtistRepository artistRepository;
 
     /*
      * private ArtistDaoProducer artistDaoProducer;

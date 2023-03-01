@@ -24,7 +24,7 @@ public class ArtistController {
 
     private static final Logger LOG = LoggerFactory.getLogger(ArtistController.class);
 
-    private ArtistService artistService;
+    private final ArtistService artistService;
 
     @Autowired
     public ArtistController(ArtistService artistService) {
@@ -72,57 +72,7 @@ public class ArtistController {
         return ResponseEntity.created(location).body(artistToUpdate);
     }
 
-    /*
-    @PatchMapping(path = "/{id}")
-    public ResponseEntity<String> updateArtistPartiallyById(@PathVariable("id") @Min(1) long id,
-                                                            @RequestBody Map<String, Object> fields) {
-        Artist artistToPatch = artistService.getArtistById(id).get();
-
-        Map<String, String> map = new HashMap<>();
-        Field[] artistFields = Artist.class.getDeclaredFields();
-
-        for (Field field : artistFields) {
-            if (field.isAnnotationPresent(JsonProperty.class)) {
-                String annotationValue = field.getAnnotation(JsonProperty.class).value();
-                map.put(annotationValue, field.getName());
-                System.out.println(map.toString());
-            } else {
-                map.put(field.getName(), field.getName());
-                System.out.println(map.toString());
-
-            }
-        }
-
-        fields.forEach((k, v) -> {
-            String value;
-            if (map.containsKey(k)) {
-                value = map.get(k);
-                // System.out.println("map key: "+map.get(k));
-                System.out.println("map value: " + value);
-
-                try {
-                    Field field = ReflectionUtils.findField(Artist.class, value);
-                    field.setAccessible(true);
-                    ReflectionUtils.setField(field, artistToPatch, (String) v);
-                } catch (IllegalArgumentException | SecurityException e) {
-                    // TODO Auto-generated catch block
-                    e.printStackTrace();
-                }
-            } else {
-                // adapt with approriate exception
-                throw new ResourceNotFoundException("Field :" + k + " not valid");
-            }
-        });
-
-        artistService.updateArtist(artistToPatch);
-        URI location = ServletUriComponentsBuilder.fromCurrentRequestUri().build().toUri();
-
-        return ResponseEntity.created(location).build();
-    }
-    */
-
     @DeleteMapping(path = "/{id}")
-    //@ResponseStatus(HttpStatus.OK)
     public ResponseEntity<Void> deleteArtistById(@PathVariable("id") @Min(1) long id) {
         LOG.info("deleteArtistById request for artist id : {}",id);
         
