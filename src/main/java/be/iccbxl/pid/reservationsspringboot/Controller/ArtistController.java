@@ -16,9 +16,9 @@ import javax.validation.constraints.Min;
 import java.net.URI;
 import java.util.List;
 
-//@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin(origins = "http://localhost:4200")
 @RestController
-@RequestMapping("api/Reservations/V1/artists")
+@RequestMapping("api/V1/artists")
 @Validated
 public class ArtistController {
 
