@@ -6,7 +6,7 @@ spring:
 
 server:
   servlet:
-    context-path: /reservations
+    context-path: /Reservations
 #  tomcat:
 #    max-connections: 20
 #    threads:
